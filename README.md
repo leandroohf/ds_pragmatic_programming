@@ -1,5 +1,5 @@
-# Machine Pragmatic Programming
+# Data Science Pragmatic Programming
 
-  Snippet codes for common uses routines in machine learning projects
+   Snippet codes for common used routines in data science projects.
 
-  [python](ml_pragmatic_programming_python.ipynb)
+  [python](ds_pragmatic_programming_python.ipynb)
