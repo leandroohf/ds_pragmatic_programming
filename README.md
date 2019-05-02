@@ -5,7 +5,12 @@
   * [python and pandas](ds_pragmatic_programming_python.ipynb)
   * [Big Data](ds_pragmatic_programming_pyspark.ipynb)
   * [SQL](ds_pragmatic_programming_SQL.ipynb)
-  
+
+
+
+****Test gitlab push* delete later
+
+
 ## Automated system
 ### Spark notebook
 
