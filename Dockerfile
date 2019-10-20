@@ -2,6 +2,7 @@
 FROM jupyter/pyspark-notebook
 
 # Install nbgrader and pyspark
+RUN conda install -y -c anaconda numpy
 RUN conda install -y -c conda-forge nbgrader
 RUN conda install -y beautifulsoup4
 RUN conda install -y Flask
@@ -11,7 +12,6 @@ RUN conda install -y -c anaconda basemap
 RUN conda install -y -c conda-forge findspark
 RUN conda install -y -c anaconda pydot
 RUN conda install -y -c conda-forge matplotlib
-RUN conda install -y -c anaconda numpy
 RUN conda install -y -c conda-forge xgboost
 RUN conda install -y -c damianavila82 rise
 RUN conda install -y -c conda-forge pydotplus
