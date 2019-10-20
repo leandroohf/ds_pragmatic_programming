@@ -1,10 +1,17 @@
 # Data Science Pragmatic Programming
 
+
   Snippet codes for common used routines in data science projects.
 
   * [python and pandas](ds_pragmatic_programming_python.ipynb)
   * [Big Data](ds_pragmatic_programming_pyspark.ipynb)
   * [SQL](ds_pragmatic_programming_SQL.ipynb)
+
+  Run online https://mybinder.org/v2/gh/leandroohf/ds_pragmatic_programming.git/master
+  [![Binder](https://mybinder.org/badge_logo.svg)](https://mybinder.org/v2/gh/leandroohf/ds_pragmatic_programming.git/master)
+
+  .. image:: https://mybinder.org/badge_logo.svg
+  :target: https://mybinder.org/v2/gh/leandroohf/ds_pragmatic_programming.git/master
 
 ## Automated system
 ### Spark notebook
