@@ -39,3 +39,7 @@ RUN conda install -y -c conda-forge matplotlib
 # ENV HOME "/home/ucsddse230"
 # WORKDIR /home/ucsddse230/work
 # USER ucsddse230
+
+RUN whoami
+RUN pwd
+RUN ls 
