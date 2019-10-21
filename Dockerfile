@@ -13,10 +13,6 @@ RUN apt-get update \
     && apt-get -y clean \
     && rm -rf /var/lib/apt/lists/*
 
-# install jupyter extensions
-RUN jupyter contrib nbextension install --user
-RUN jupyter nbextension enable --py widgetsnbextension
-
 # RUN mkdir -p /home/jovyan/.jupyter
 # RUN chown jovyan:users /home/jovyan/.jupyter
 # WORKDIR /home/jovyan/.jupyter
@@ -46,6 +42,10 @@ COPY *.ipynb /home/jovyan/
 
 
 USER jovyan
+
+# install jupyter extensions
+RUN jupyter contrib nbextension install --user
+RUN jupyter nbextension enable --py widgetsnbextension
 
 RUN whoami
 RUN pwd
