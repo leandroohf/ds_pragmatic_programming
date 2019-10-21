@@ -13,6 +13,9 @@ RUN apt-get update \
     && apt-get -y clean \
     && rm -rf /var/lib/apt/lists/*
 
+
+## TODO: with root user did not worked
+## TODO: try again with /home/jovyan/ and set permission to data forlder
 # RUN mkdir -p /home/jovyan/.jupyter
 # RUN chown jovyan:users /home/jovyan/.jupyter
 # WORKDIR /home/jovyan/.jupyter
@@ -29,12 +32,16 @@ RUN apt-get update \
 # USER ucsddse230
 
 
-WORKDIR /root
+RUN mkdir -p /home/jovyan/data
+RUN mkdir -p /home/jovyan/images
 
-ADD images /root/images
-ADD data  /root/data
-COPY README.md /root
-COPY *.ipynb /root/
+RUN chown jovyan:users /home/jovyan/data
+RUN chown jovyan:users /home/jovyan/images
+
+ADD images /home/jovyan/images
+ADD data  /home/jovyan/data
+COPY README.md /home/jovyan
+COPY *.ipynb /home/jovyan/
 
 RUN whoami
 RUN pwd
