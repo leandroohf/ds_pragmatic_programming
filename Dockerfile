@@ -13,9 +13,10 @@ RUN apt-get update \
     && apt-get -y clean \
     && rm -rf /var/lib/apt/lists/*
 
+# install jupyter extensions
+RUN jupyter contrib nbextension install --user
+RUN jupyter nbextension enable --py widgetsnbextension
 
-## TODO: with root user did not worked
-## TODO: try again with /home/jovyan/ and set permission to data forlder
 # RUN mkdir -p /home/jovyan/.jupyter
 # RUN chown jovyan:users /home/jovyan/.jupyter
 # WORKDIR /home/jovyan/.jupyter
