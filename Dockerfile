@@ -8,7 +8,7 @@ RUN conda install -y -c conda-forge matplotlib
 # Setup jupyter to avoid tokens/passwords
 USER root
 RUN apt-get update \
-    && apt-get -y install time \
+    #&& apt-get -y install time \
     && apt-get install -y --no-install-recommends curl graphviz \
     && apt-get -y clean \
     && rm -rf /var/lib/apt/lists/*
