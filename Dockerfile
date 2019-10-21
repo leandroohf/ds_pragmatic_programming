@@ -40,6 +40,12 @@ RUN conda install -y -c conda-forge matplotlib
 # WORKDIR /home/ucsddse230/work
 # USER ucsddse230
 
+
+ADD images ~/
+ADD data  ~/
+COPY README.md ~/
+COPY *.ipynb ~/
+
 RUN whoami
 RUN pwd
 RUN ls 
