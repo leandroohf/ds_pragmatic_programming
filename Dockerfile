@@ -2,7 +2,7 @@
 FROM jupyter/tensorflow-notebook
 
 RUN conda install -y -c conda-forge jupyter_contrib_nbextensions
-RUN  conda install -y -c r rpy2
+RUN conda install -y -c r rpy2
 RUN conda install -y -c conda-forge matplotlib
 
 # Setup jupyter to avoid tokens/passwords
@@ -42,6 +42,9 @@ ADD images /home/jovyan/images
 ADD data  /home/jovyan/data
 COPY README.md /home/jovyan
 COPY *.ipynb /home/jovyan/
+
+
+USER jovyan
 
 RUN whoami
 RUN pwd
