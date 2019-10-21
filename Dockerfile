@@ -4,6 +4,7 @@ FROM jupyter/tensorflow-notebook
 RUN conda install -y -c conda-forge jupyter_contrib_nbextensions
 RUN conda install -y -c r rpy2
 RUN conda install -y -c conda-forge matplotlib
+RUN conda install -y -c plotly plotly
 
 # Setup jupyter to avoid tokens/passwords
 USER root
@@ -12,21 +13,6 @@ RUN apt-get update \
     && apt-get install -y --no-install-recommends curl graphviz \
     && apt-get -y clean \
     && rm -rf /var/lib/apt/lists/*
-
-# RUN mkdir -p /home/jovyan/.jupyter
-# RUN chown jovyan:users /home/jovyan/.jupyter
-# WORKDIR /home/jovyan/.jupyter
-# RUN /opt/conda/bin/jupyter notebook --generate-config
-# RUN echo "c.NotebookApp.ip = '*'" >> jupyter_notebook_config.py
-# RUN echo "c.NotebookApp.open_browser = False" >> jupyter_notebook_config.py
-# RUN echo "c.NotebookApp.token = u''" >> jupyter_notebook_config.py
-# RUN echo "c.NotebookApp.allow_root = True" >> jupyter_notebook_config.py
-# RUN chown jovyan:users jupyter_notebook_config.py
-# RUN usermod -l ucsddse230 jovyan
-# RUN usermod -d /home/ucsddse230 -m ucsddse230
-# ENV HOME "/home/ucsddse230"
-# WORKDIR /home/ucsddse230/work
-# USER ucsddse230
 
 
 RUN mkdir -p /home/jovyan/data
@@ -46,9 +32,10 @@ USER jovyan
 # install jupyter extensions
 RUN jupyter contrib nbextension install --user
 RUN jupyter nbextension enable --py widgetsnbextension
-RUN jupyter nbextensions_configurator enable --user
-#RUN jupyter nbextension enable --py collapsible_headings
 
-RUN whoami
-RUN pwd
-RUN ls 
+
+# XXX:extension collapse sections not working
+#RUN jupyter nbextensions_configurator enable --user
+RUN  jupyter nbextension enable collapsible_headings/main
+RUN  jupyter nbextension enable codefolding/main
+
