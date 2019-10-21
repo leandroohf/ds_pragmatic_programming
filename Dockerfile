@@ -7,6 +7,7 @@ FROM jupyter/tensorflow-notebook
 #RUN conda install -y beautifulsoup4
 #RUN conda install -y Flask
 RUN conda install -y -c conda-forge jupyter_contrib_nbextensions
+RUN  conda install -y -c r rpy2
 #RUN conda install -y -c conda-forge ipyleaflet
 #RUN conda install -y -c anaconda basemap
 #RUN conda install -y -c conda-forge findspark
@@ -19,8 +20,9 @@ RUN conda install -y -c conda-forge matplotlib
 # RUN pip install jupyter-tensorboard
 
 # Setup jupyter to avoid tokens/passwords
-# USER root
-# RUN apt-get update \
+USER root
+RUN apt-get update \
+    && apt-get install time
 #     && apt-get install -y --no-install-recommends curl graphviz \
 #     && apt-get -y clean \
 #     && rm -rf /var/lib/apt/lists/*
@@ -42,10 +44,12 @@ RUN conda install -y -c conda-forge matplotlib
 
 
 
-ADD images /home/jovyan/images
-ADD data  /home/jovyan/data
-COPY README.md /home/jovyan/
-COPY *.ipynb /home/jovyan/
+WORKDIR /root
+
+ADD images /root/images
+ADD data  /root/data
+COPY README.md /root
+COPY *.ipynb /root
 
 RUN whoami
 RUN pwd
