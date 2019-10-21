@@ -41,10 +41,11 @@ RUN conda install -y -c conda-forge matplotlib
 # USER ucsddse230
 
 
-ADD images ~/
-ADD data  ~/
-COPY README.md ~/
-COPY *.ipynb ~/
+
+ADD images /home/jovyan/
+ADD data  /home/jovyan/
+COPY README.md /home/jovyan/
+COPY *.ipynb /home/jovyan/
 
 RUN whoami
 RUN pwd
