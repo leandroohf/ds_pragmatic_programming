@@ -1,23 +1,9 @@
 # This installs  python 3.6 as well as jupyter and other python packages
 FROM jupyter/tensorflow-notebook
 
-# Install nbgrader and pyspark
-#RUN conda install -y -c anaconda numpy
-#RUN conda install -y -c conda-forge nbgrader
-#RUN conda install -y beautifulsoup4
-#RUN conda install -y Flask
 RUN conda install -y -c conda-forge jupyter_contrib_nbextensions
 RUN  conda install -y -c r rpy2
-#RUN conda install -y -c conda-forge ipyleaflet
-#RUN conda install -y -c anaconda basemap
-#RUN conda install -y -c conda-forge findspark
-#RUN conda install -y -c anaconda pydot
 RUN conda install -y -c conda-forge matplotlib
-#RUN conda install -y -c conda-forge xgboost
-#RUN conda install -y -c damianavila82 rise
-# RUN conda install -y -c conda-forge pydotplus
-# RUN conda install -y -c conda-forge tensorflow
-# RUN pip install jupyter-tensorboard
 
 # Setup jupyter to avoid tokens/passwords
 USER root
@@ -43,13 +29,12 @@ RUN apt-get update \
 # USER ucsddse230
 
 
-
 WORKDIR /root
 
 ADD images /root/images
 ADD data  /root/data
 COPY README.md /root
-COPY *.ipynb /root
+COPY *.ipynb /root/
 
 RUN whoami
 RUN pwd
