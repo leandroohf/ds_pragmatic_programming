@@ -46,7 +46,8 @@ USER jovyan
 # install jupyter extensions
 RUN jupyter contrib nbextension install --user
 RUN jupyter nbextension enable --py widgetsnbextension
-RUN jupyter nbextension enable --py collapsible_headings
+RUN jupyter nbextensions_configurator enable --user
+#RUN jupyter nbextension enable --py collapsible_headings
 
 RUN whoami
 RUN pwd
