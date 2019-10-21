@@ -3,10 +3,12 @@
 
   Snippet codes for common used routines in data science projects.
 
-  * [python and pandas](ds_pragmatic_programming_python.ipynb)  [![Binder](https://mybinder.org/badge_logo.svg)](https://mybinder.org/v2/gh/leandroohf/ds_pragmatic_programming.git/master?filepath=ds_pragmatic_programming_python.ipynb)
+  * [python and pandas](ds_pragmatic_programming_python.ipynb)
   * [Big Data](ds_pragmatic_programming_pyspark.ipynb)
   * [SQL](ds_pragmatic_programming_SQL.ipynb)
 
+
+  [![Binder](https://mybinder.org/badge_logo.svg)](https://mybinder.org/v2/gh/leandroohf/ds_pragmatic_programming.git/master)
 
 ## Automated system
 ### Spark notebook
