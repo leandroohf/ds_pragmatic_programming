@@ -42,8 +42,8 @@ RUN conda install -y -c conda-forge matplotlib
 
 
 
-ADD images /home/jovyan/
-ADD data  /home/jovyan/
+ADD images /home/jovyan/images
+ADD data  /home/jovyan/data
 COPY README.md /home/jovyan/
 COPY *.ipynb /home/jovyan/
 
