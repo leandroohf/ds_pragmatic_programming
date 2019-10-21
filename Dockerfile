@@ -33,9 +33,6 @@ USER jovyan
 RUN jupyter contrib nbextension install --user
 RUN jupyter nbextension enable --py widgetsnbextension
 
-
-# XXX:extension collapse sections not working
-#RUN jupyter nbextensions_configurator enable --user
 RUN  jupyter nbextension enable collapsible_headings/main
 RUN  jupyter nbextension enable codefolding/main
 
