@@ -8,7 +8,7 @@
   * [SQL](ds_pragmatic_programming_SQL.ipynb)
 
 
-  [![Binder](https://mybinder.org/badge_logo.svg)](https://mybinder.org/v2/gh/leandroohf/ds_pragmatic_programming.git/master)
+  [![Binder](https://mybinder.org/badge_logo.svg)](https://mybinder.org/v2/gh/leandroohf/ds_pragmatic_programming.git/master) <= **Take while when run for the first time** 
 
 ## Automated system
 ### Spark notebook
