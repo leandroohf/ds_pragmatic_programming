@@ -1,8 +1,21 @@
+# * *************************************************************************
+#   Programmer[s]: Leandro Fernandes
+#   email: leandroohf@gmail.com
+#   Program: utils
+#   Commentary: My utils to help with processing data
+#   Reference: https://www.thoughtworks.com/insights/blog/coding-habits-data-scientists
+#   Date: February 6, 2020
+#
+#   The author believes that share code and knowledge is awesome.
+#   Feel free to share and modify this piece of code. But don't be
+#   impolite and remember to cite the author and give him his credits.
+# * *************************************************************************
+
 import functools
 import zipfile
 import pandas as pd
 
-# Shameless stolen from the comments of 
+# Shameless inspired from the comments of
 # https://www.thoughtworks.com/insights/blog/coding-habits-data-scientists
 def compose(*functions):
     """Ex: prepare_data = compose(functools.partial(encode_column, col_name='item'),
