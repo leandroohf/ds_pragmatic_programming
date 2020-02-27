@@ -85,15 +85,13 @@ def get_word_frequency_table(corpus: list, *args, **kargs) -> pd.DataFrame:
     vectorizer = CountVectorizer(*args, binary=False, **kargs )
 
     # sparse matrix
+    # doc x word count matrix
+    # #docs, #words = bag_of_words.shape
     bag_of_words = vectorizer.fit_transform(corpus)
 
-    # doc x word count matrix
-    # #docs, #words = X.shape
-    X = bag_of_words.toarray()
+    word_freq = bag_of_words.sum(axis=0)
 
-    word_freq = X.sum(axis=0)
-
-    word_freq_df = pd.DataFrame({'word_freq': word_freq})
+    word_freq_df = pd.DataFrame({'word_freq': word_freq.tolist()[0]})
     words = vectorizer.get_feature_names()
 
     word_freq_df['word'] = word_freq_df.apply(lambda r: words[r.name],axis=1)
@@ -109,16 +107,14 @@ def get_doc_frequency_by_word_table(corpus: list, *args, **kargs) -> pd.DataFram
     """
     vectorizer = CountVectorizer(*args, binary=True, **kargs )
 
-    # sparse matrix 
-    doc_word_matrix = vectorizer.fit_transform(corpus)
-
+    # sparse matrix
     # doc x word matrix
     # #docs, #words = X.shape
-    X = doc_word_matrix.toarray()
+    doc_word_matrix = vectorizer.fit_transform(corpus)
 
-    doc_freq = X.sum(axis=0)
+    doc_freq = doc_word_matrix.sum(axis=0)
 
-    doc_freq_df = pd.DataFrame({'doc_freq': doc_freq})
+    doc_freq_df = pd.DataFrame({'doc_freq': doc_freq.tolist()[0]})
     words = vectorizer.get_feature_names()
 
     doc_freq_df['idf'] = doc_freq_df.doc_freq.map(lambda x: 1.0/x)
@@ -135,18 +131,16 @@ def get_tfidf_table(corpus: list, *args, **kargs) -> pd.DataFrame:
     vectorizer = TfidfVectorizer(*args, **kargs )
 
     # sparse matrix
-    tfidf_of_words = vectorizer.fit_transform(corpus)
-
     # doc x word matrix
     # #docs, #words = X.shape
-    X = tfidf_of_words.toarray()
+    tfidf_of_words = vectorizer.fit_transform(corpus)
 
     words = vectorizer.get_feature_names()
 
-    tfidf_df = pd.DataFrame({'words': words, 'min': np.min(X,axis=0), 
-                             'mean': np.mean(X,axis=0),
-                             'median': np.median(X,axis=0),
-                             'max': np.max(X,axis=0)})
+    tfidf_df = pd.DataFrame({'words': words, 'min': np.min(tfidf_of_words,axis=0), 
+                             'mean': np.mean(tfidf_of_words,axis=0),
+                             'median': np.median(tfidf_of_words,axis=0),
+                             'max': np.max(tfidf_of_words,axis=0)})
 
 
     # sort by frequency of word
