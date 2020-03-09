@@ -13,6 +13,8 @@
 import numpy as np
 import pandas as pd
 
+import string
+
 from nltk import word_tokenize
 from nltk.tokenize import RegexpTokenizer
 
@@ -107,6 +109,8 @@ def get_doc_frequency_by_word_table(corpus: list, *args, **kargs) -> pd.DataFram
     """
     vectorizer = CountVectorizer(*args, binary=True, **kargs )
 
+    n_docs = len(corpus)
+
     # sparse matrix
     # doc x word matrix
     # #docs, #words = X.shape
@@ -115,9 +119,10 @@ def get_doc_frequency_by_word_table(corpus: list, *args, **kargs) -> pd.DataFram
     doc_freq = doc_word_matrix.sum(axis=0)
 
     doc_freq_df = pd.DataFrame({'doc_freq': doc_freq.tolist()[0]})
+
     words = vectorizer.get_feature_names()
 
-    doc_freq_df['idf'] = doc_freq_df.doc_freq.map(lambda x: 1.0/x)
+    doc_freq_df['df'] = doc_freq_df.doc_freq.map(lambda x: x/n_docs)
     doc_freq_df['word'] = doc_freq_df.apply(lambda r: words[r.name],axis=1)
 
     # sort by frequency of word
@@ -125,6 +130,7 @@ def get_doc_frequency_by_word_table(corpus: list, *args, **kargs) -> pd.DataFram
 
     return doc_freq_df
 
+## Fixme: Not running after change numpy to sparse matrix
 def get_tfidf_table(corpus: list, *args, **kargs) -> pd.DataFrame:
     """Returns statistics for tfidf in a corpus per word"""
 
@@ -133,14 +139,17 @@ def get_tfidf_table(corpus: list, *args, **kargs) -> pd.DataFrame:
     # sparse matrix
     # doc x word matrix
     # #docs, #words = X.shape
-    tfidf_of_words = vectorizer.fit_transform(corpus)
+    bag_of_tfidf = vectorizer.fit_transform(corpus)
+
+    print(bag_of_tfidf.shape)
 
     words = vectorizer.get_feature_names()
 
-    tfidf_df = pd.DataFrame({'words': words, 'min': np.min(tfidf_of_words,axis=0), 
-                             'mean': np.mean(tfidf_of_words,axis=0),
-                             'median': np.median(tfidf_of_words,axis=0),
-                             'max': np.max(tfidf_of_words,axis=0)})
+    tfidf_df = pd.DataFrame({'words': words,
+                             'min': bag_of_tfidf.min(axis=0),
+                             'mean': bag_of_tfidf.mean(axis=0),
+                             #'median': bag_of_tfidf.median(axis=0), # TODO; Check this later
+                             'max': bag_of_tfidf.max(axis=0)})
 
 
     # sort by frequency of word
@@ -148,6 +157,33 @@ def get_tfidf_table(corpus: list, *args, **kargs) -> pd.DataFrame:
 
     return tfidf_df
 
+# Create function using string.punctuation to remove all punctuation
+def remove_punctuation(sentence: str) -> str:
+    return sentence.translate(str.maketrans('', '', string.punctuation))
+
+def remove_large_words(sentence: str, LARGE_WORD_THR: int) -> str:
+
+    tokenizer = RegexpTokenizer(r'\w+')
+
+    tokenized_words = tokenizer.tokenize(sentence)
+
+    # Remove 
+    normalized = [word for word in tokenized_words if len(word) < LARGE_WORD_THR ]
+
+    return ' '.join(normalized)
+
+def remove_stop_words(sentence: str, MY_STOP_WORDS: str) -> str:
+
+    tokenizer = RegexpTokenizer(r'\w+')
+
+    tokenized_words = tokenizer.tokenize(sentence)
+
+    # Remove stop words
+    normalized = [word for word in tokenized_words if word not in MY_STOP_WORDS]
+
+    return ' '.join(normalized)
+
+# TODO
 def clean_text_data(sentences: str, large_words: int , my_stopped_words = Optional[List[str]]) -> str:
 
     pass
