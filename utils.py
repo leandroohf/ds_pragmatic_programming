@@ -14,6 +14,7 @@
 import functools
 import zipfile
 import pandas as pd
+import numpy as np
 
 # Shameless inspired from the comments of
 # https://www.thoughtworks.com/insights/blog/coding-habits-data-scientists
@@ -35,3 +36,22 @@ def load_zipped_data(data_file_name: str,csv_basename: str ):
     data = pd.read_csv(zf.open(csv_basename), index_col=False, encoding='latin1')
 
     return data
+
+def print_7_number(data):
+
+    # calculate quartiles
+    quartiles = np.percentile(data, [25, 50, 75])
+    # calculate min/max
+    data_min, data_max = data.min(), data.max()
+
+    _five_numbers = {'min': data_min,
+                     'q1': quartiles[0],
+                     'mean': np.mean(data),
+                     'median': quartiles[1],
+                     'q3': quartiles[2],
+                     'max': data_max,
+                     'std': np.std(data)
+    }
+
+
+    return _five_numbers
