@@ -1,4 +1,4 @@
--# Data Science Pragmatic Programming
+# Data Science Pragmatic Programming
 
   Snippet codes for common used routines in data science projects.
 
