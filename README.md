@@ -20,7 +20,7 @@ https://hub.docker.com/r/ucsddse230/cse255-dse230
 
 
 ```sh
-# Install images
+# Install imagesgg
 docker pull ucsddse230/cse255-dse230
 
 # Run container
