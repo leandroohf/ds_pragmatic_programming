@@ -23,7 +23,7 @@ https://hub.docker.com/r/ucsddse230/cse255-dse230
 # Install imagesgg
 docker pull ucsddse230/cse255-dse230
 
-# Run container
+# Run containerg
 docker run --name ds_pragmatic -it -p 8890:8888 -v /media/leandroohf/sdb1/leandro/ds_pragmatic_programming:/home/ucsddse230/ ucsddse230/cse255-dse230 /bin/bash
 
 # Run jupyter inside container
