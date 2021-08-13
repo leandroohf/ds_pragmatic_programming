@@ -6,7 +6,6 @@
   * [Big Data](ds_pragmatic_programming_pyspark.ipynb)
   * [SQL](ds_pragmatic_programming_SQL.ipynb)
 
-
   [![Binder](https://mybinder.org/badge_logo.svg)](https://mybinder.org/v2/gh/leandroohf/ds_pragmatic_programming.git/master) <= **Take while when run for the first time** 
 
 ## Automated system
@@ -29,7 +28,6 @@ docker run --name ds_pragmatic -it -p 8890:8888 -v /media/leandroohf/sdb1/leandr
 # Run jupyter inside container
 jupyter notebook
 
-
 # If you need to ssh to container
 docker exec -it ds_pragmatic /bin/bash
 
@@ -37,7 +35,6 @@ docker exec -it ds_pragmatic /bin/bash
 
 1. http://localhost:8890/tree
 2. Copy and paste token to login in the notebook
-
 
 You do not have to, but in case you want to build the images
 
