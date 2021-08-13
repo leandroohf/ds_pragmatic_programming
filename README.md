@@ -16,7 +16,6 @@
 You need to run inside a docker container that has all packages and spark
 running
 
-
 https://hub.docker.com/r/ucsddse230/cse255-dse230
 
 
