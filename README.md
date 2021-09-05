@@ -171,4 +171,3 @@ RUN chmod +x /run_cmd.sh
 CMD ["/run_cmd.sh"]
 ```
 
-Just testin forge in magit
